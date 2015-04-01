@@ -6,6 +6,8 @@ var port = process.env.PORT || 3000;
 var router = express.Router();
 var app = express();
 
+app.use(express.static('www'));
+
 // Setup body parser:
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

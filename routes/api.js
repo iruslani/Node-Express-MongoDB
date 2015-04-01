@@ -33,7 +33,7 @@ jobsInit.save();*/
 router.get('/jobs', function(req, res){
   Jobs.find(function(err, docs) {
   	docs.forEach(function(item){
-  		console.log('Received a GET request for _id ' + item._id + ' job: ' + item.job);
+  		console.log('Received a GET request for _id ' + item._id + ' job: ' + item.title);
   	});
   	res.send(docs);
   })
