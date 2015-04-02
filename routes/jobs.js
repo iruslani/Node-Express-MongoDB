@@ -15,21 +15,35 @@ router.get( '/', function( req, res ) {
         if( !err ) {
             res.render('jobs.ejs', {
               pageTitle: 'Jobs Page',
-              message: jobs
+              jobs: jobs
 
             });
-            console.log(jobs);
+            //console.log(jobs);
         } else {
             return console.log( err );
         }
     });
 });
 
-// define the about route
 router.get('/add', function(req, res) {
   res.render('new.ejs', {
               pageTitle: 'Add a new Job'
             });
 })
 
+router.get('/edit/:job_id', function(req, res) {
+    return Jobs.findOne({_id: req.params.job_id}, function(err, jobs) {
+        if( !err ) {
+            res.render('edit.ejs', {
+              pageTitle: 'Edit Page',
+              jobs: jobs
+            });
+            //console.log(jobs);
+        } else {
+            return console.log( err );
+        }
+    });
+
+
+})
 module.exports = router;

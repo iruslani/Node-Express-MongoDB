@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <% include ./partials/header %>
+
+<form id="<%= jobs._id %>">
+  <div class="row">
+    <span class="responseMessage" style="color:red;"></span>
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Job Title:</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" name="title" id="right-label" value="<%= jobs.title %>" placeholder="Inline Text Input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Company:</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" name="company" id="right-label" value="<%= jobs.company %>" placeholder="Inline Text Input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Description:</label>
+        </div>
+        <div class="small-9 columns">
+          <textarea type="text" name="description" id="right-label" placeholder="Inline Text Input"><%= jobs.description %></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="right">Submit</button>
+</form>
+      </div>
+    </div>
+<script type="text/javascript">
+  $( "form" ).submit(function( event ) {
+  var values = {};
+  id = $('form').attr('id');
+  $.each($('form').serializeArray(), function(i, field) {
+      values[field.name] = field.value;
+      console.log(field.name + ':');
+      console.log(field.value);
+  });
+ console.log(values);
+     
+    $.ajax({
+        type: "PUT",
+        url: "/api/jobs/edit/"+id,
+        processData: false,
+        contentType: 'application/json',
+        data: JSON.stringify(values),
+        success: function(r) {
+          //alert(r);
+          console.log('response success');
+          console.log(r.message);
+          $('.responseMessage').text(r.message);
+        }
+    });
+  event.preventDefault();
+});
+</script>
+  </body>
+</html>
