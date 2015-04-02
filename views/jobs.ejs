@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <% include ./partials/header %>
+
+       <div class="row">
+          <div class="small-12 columns">
+            <ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-2">
+            <% for(var i=0; i<message.length; i++) { %>
+            <li>
+              <div class="panel">
+                  <h3><%= message[i].title %></h3>
+                  <p><%= message[i].company %></p>
+                  <p><%= message[i].description %></p>
+              </div>
+            </li>
+            <% } %>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </body>
+</html>
