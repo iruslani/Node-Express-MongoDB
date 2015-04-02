@@ -10,14 +10,15 @@ router.use(function timeLog(req, res, next) {
 })
 
 router.get( '/', function( req, res ) {
-    return Jobs.find( function( err, jobs ) {
+	// sort by latest:
+    return Jobs.find().sort({_id:-1}).limit(15).find( function( err, jobs ) {
         if( !err ) {
             res.render('jobs.ejs', {
               pageTitle: 'Jobs Page',
               message: jobs
 
             });
-            //console.log(jobs);
+            console.log(jobs);
         } else {
             return console.log( err );
         }
@@ -26,7 +27,9 @@ router.get( '/', function( req, res ) {
 
 // define the about route
 router.get('/add', function(req, res) {
-  res.send('Add a new job');
+  res.render('new.ejs', {
+              pageTitle: 'Add a new Job'
+            });
 })
 
 module.exports = router;
