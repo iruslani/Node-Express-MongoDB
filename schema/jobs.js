@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 // Connect to DB:
-mongoose.connect('mongodb://localhost/jobs2');
+//mongoose.connect('mongodb://localhost/jobs2');
+mongoose.connect('mongodb://localhost/jobs3');
 
 // Build schema:
 var Schema = mongoose.Schema;
