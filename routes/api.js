@@ -1,25 +1,13 @@
 // API Routes Module
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
+var Jobs = require('../schema/jobs');
 
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
   next();
 })
-
-// Connect to DB:
-mongoose.connect('mongodb://localhost/jobs2');
-
-// Build schema:
-var Schema = mongoose.Schema;
-var JobSchema = new Schema({
-	title: String,
-	description: String,
-	company: String
-});
-var Jobs = mongoose.model('Jobs', JobSchema);
 
 // Add initial data:
 /*var jobsInit = new Jobs({
