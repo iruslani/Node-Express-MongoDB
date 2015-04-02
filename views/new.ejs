@@ -10,6 +10,7 @@
 
 <form>
   <div class="row">
+    <span class="responseMessage" style="color:red;"></span>
     <div class="small-12 columns">
       <div class="row">
         <div class="small-3 columns">
@@ -72,9 +73,13 @@
         contentType: 'application/json',
         data: JSON.stringify(values),
         success: function(r) {
-          alert(r);
+          //alert(r);
           console.log('response success');
-          console.log(r);
+          console.log(r.message);
+          $('.responseMessage').text(r.message);
+          $( 'form' ).each(function(){
+              this.reset();
+          });
         }
 
     });
